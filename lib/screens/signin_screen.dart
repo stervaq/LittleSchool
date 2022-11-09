@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:school/screens/home_screen.dart';
 
 import '../reusable_widgets/reusable_widget.dart';
+import 'signup_screen.dart';
 
 
 class SignInScreen extends StatefulWidget {
@@ -36,12 +40,38 @@ class _SignInScreenState extends State<SignInScreen> {
                const SizedBox(height: 30,),
                 reusableTextField("Пароль", Icons.lock, false, _passwordTextController),
                const SizedBox(height: 20,),
-                signInSignUpButton(context, true, () {} )
+                signInSignUpButton(context, true, () {
+                  FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: _emailTextController.text,
+                      password: _passwordTextController.text).then((value) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()),);
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+                  })
+                  ;
+                  },
+                 ),
+                signUpOption()
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+
+  Row signUpOption(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("У вас нет аккаунта?", style: TextStyle(color: Colors.white)),
+        GestureDetector(
+          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen() ));
+            } ,
+          child: const Text(" Регистрация", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        ),
+      ],
     );
   }
 }

@@ -44,7 +44,7 @@ Container signInSignUpButton(BuildContext context, bool isLogin, Function onTap)
   return Colors.white;
   }),shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))
   ) ,
-    child: Text(isLogin ? 'LOG IN' : 'SIGN UP', style: const TextStyle(color: Colors.black87,
+    child: Text(isLogin ? 'Авторизоваться' : 'Зарегистрироваться', style: const TextStyle(color: Colors.black87,
     fontWeight: FontWeight.bold, fontSize: 16),
     ),),
   );
