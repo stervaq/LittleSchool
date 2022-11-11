@@ -59,8 +59,6 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-
-
   Row signUpOption(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
