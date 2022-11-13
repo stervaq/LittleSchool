@@ -1,1 +1,1 @@
-Firebase + Flutter. Commercial project
+Firebase + Flutter.
